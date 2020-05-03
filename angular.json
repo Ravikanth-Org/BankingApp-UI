@@ -144,6 +144,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "httpclientexample"
+    }
+  },
+  "defaultProject": "httpclientexample",
+  "cli": {
+    "analytics": "ec8a65d6-4c4f-4df9-91fc-271c0c0b68aa"
+  }
 }
