@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '../_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({ selector: 'app-login',templateUrl: './login.component.html'})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
@@ -49,7 +49,12 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.authenticationService.isUserLoggedIn=true
+                    if(data["user"]["role"]==="Admin"){
                     this.router.navigate([this.returnUrl,]);
+                    }
+                    else{
+                        this.router.navigate(['/customer',]);
+                    }
                 },
                 error => {
                     this.alertService.error(error);

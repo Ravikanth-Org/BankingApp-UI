@@ -1,11 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { Home } from './Home';
-import { LoginComponent } from './login';
+import {CustomerHomeComponent} from './customer/customer-home/customer-home.component'
+import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
+import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
-    { path: '', component: Home, canActivate: [AuthGuard] },
+    { path: '', component: AdminHomeComponent, canActivate: [AuthGuard] },
+    { path: 'customer', component: CustomerHomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
 
     // otherwise redirect to employee
