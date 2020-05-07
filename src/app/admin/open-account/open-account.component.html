@@ -1,1 +1,52 @@
-<p>open-account works!</p>
+<div role="main">
+
+
+    <div>
+        <div style="height: 64px;">
+
+        </div>
+        <div style="display: flex;">
+            <div class="Hanu">
+                <form  [formGroup]="openAccountForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Account Type</label>
+                        <select class="form-control">
+                            <option>Savings</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Joint Account</label>
+                        <select class="form-control">
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Primary Owner</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Secondary Owner</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Branch</label>
+                        <select class="form-control">
+                            <option>Chennai</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Currency</label>
+                        <select class="form-control">
+                            <option>Rupees</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Initial Balance</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
