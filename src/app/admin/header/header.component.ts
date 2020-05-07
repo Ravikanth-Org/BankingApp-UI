@@ -35,10 +35,10 @@ export class HeaderComponent implements OnInit {
   onSearchClick() {
     //  this.router.navigate(['/updateAccount',]);
     // /api/user/:userId
-    this.appService.getUserDetails(this.searchId, function (res) {
-      if (true) {
-        this.router.navigate(['/updateAccount',]);
-      }
+    this.appService.getUserDetails(this.searchId,  (res)=> {
+     if(res[0]){
+      this.adminService.whichClick="updateAccount";
+     }
       console.log(res);
     })
   }

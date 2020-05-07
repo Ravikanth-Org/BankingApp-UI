@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {Subject} from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppService {
 
   private url: string;
-
+  setUserData = new Subject<''>();
 
   constructor(private client: HttpClient) {
   }
@@ -33,6 +33,7 @@ export class AppService {
     this.client.get(`http://localhost:3000/api/user/${userId}`)
     .subscribe((response) => {
       console.log(response);
+      this.setUserData.next(response[0]);
       callBackFunction(response);
     });
   }
