@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../../app.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {HeaderComponent} from '../header/header.component'
 
 @Component({
   selector: 'app-admin-home',

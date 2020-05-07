@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
                 data => {
                     this.authenticationService.isUserLoggedIn=true
                     if(data["user"]["role"]==="Admin"){
-                    this.router.navigate([this.returnUrl,]);
+                   // this.router.navigate([this.returnUrl,]);
+                   this.router.navigate(['/admin']);
                     }
                     else{
                         this.router.navigate(['/customer',]);

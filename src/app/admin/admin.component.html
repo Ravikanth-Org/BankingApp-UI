@@ -1,1 +1,9 @@
 <p>admin works!</p>
+<app-header></app-header>
+<div *ngIf='this.adminService.whichClick==="openAccount"'>
+    <app-open-account></app-open-account>
+</div>
+<div *ngIf='this.adminService.whichClick==="createUser"'>
+    <app-create-user></app-create-user>
+    </div>
+    <router-outlet></router-outlet>
