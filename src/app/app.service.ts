@@ -28,4 +28,12 @@ export class AppService {
         console.log(response);
       });
   }
+  ///api/user/:userId
+  public getUserDetails(userId,callBackFunction){
+    this.client.get(`http://localhost:3000/api/user/${userId}`)
+    .subscribe((response) => {
+      console.log(response);
+      callBackFunction(response);
+    });
+  }
 }
