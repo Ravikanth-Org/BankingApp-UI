@@ -1,16 +1,21 @@
-<p>customer-header works!</p>
-<div class="topnav">
-    <!-- <a routerLink="/createUser" routerLinkActive="active">Create Account</a>
-    <a routerLink="/openAccount" routerLinkActive="active">Open Account</a> -->
-    <div>
-        <button type="button" class="btn btn-secondary" (click)="onPersonalDetailsClick()">Personal Details</button>
+<div class="row">
+    <div class="col-sm-12 text-center">
+    <button type="button" class="btn btn-primary btn-md center-block" Style="width: 100px;"
+        (click)="onPersonalDetailsClick()">Personal Details</button>
+
+
+    <button type="button" class="btn btn-primary btn-md center-block" Style="width: 100px;"
+        (click)="onFundTransferClick()">Fund Transfer</button>
+
+
+    <button type="button" class="btn btn-primary btn-md center-block" Style="width: 100px;"
+        (click)="onMiniStatementClick()">Mini Statement</button>
+
+    <button type="button" class="btn btn-primary btn-md center-block" Style="width: 100px;"
+        (click)="onDetailStatementClick()">Details
+        Statement</button>
+    
+        <button type="button" class="btn btn-primary btn-md center-block" Style="width: 100px;"
+        (click)="onUpdateDetailsClick()">Update Details</button>
     </div>
-    <div>
-        <button type="button" class="btn btn-secondary" (click)="onFundTransferClick()">Fund Transfer</button>
-    </div>
-    <div>
-        <button type="button" class="btn btn-secondary" (click)="onMiniStatementClick()">Mini Statement</button>
-    </div>
-    <div> <button type="button" class="btn btn-secondary" (click)="onDetailStatementClick()">Details
-            Statement</button>
-    </div>
+</div>

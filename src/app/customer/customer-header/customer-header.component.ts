@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from "../../_services/customer.service";
 
 @Component({
   selector: 'app-customer-header',
@@ -7,25 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public customerService: CustomerService) { }
 
   ngOnInit(): void {
   }
 
   onPersonalDetailsClick() {
-
+    this.customerService.customerWhichClick = "personalDetails"
   }
 
   onFundTransferClick() {
-
+    this.customerService.customerWhichClick = "fundTransfer"
   }
 
   onMiniStatementClick() {
-
+    this.customerService.customerWhichClick = "miniStatement"
   }
 
   onDetailStatementClick() {
+    this.customerService.customerWhichClick = "detailStatment"
+  }
 
+  onUpdateDetailsClick(){
+    this.customerService.customerWhichClick = "UpdateDetail"
   }
 
 }
