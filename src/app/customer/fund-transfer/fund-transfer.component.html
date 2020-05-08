@@ -1,1 +1,34 @@
-<p>fund-transfer works!</p>
+<p>Proceed to transfer amount</p>
+
+<div role="main">
+
+
+    <div>
+        <div style="height: 64px;">
+
+        </div>
+        <div style="display: flex;">
+            <div class="Hanu">
+                <form [formGroup]="fundTransferForm" (ngSubmit)="onSubmit(fundTransferForm)">
+                    <div class="form-group" style="display: flex;">
+                        <label for="fromAccount" style="width: 250px;padding: 6px;">From Account</label>
+                        <input type="text" class="form-control" id="name" formControlName="fromAccount" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="To Account" style="width: 250px;padding: 6px;">To Account</label>
+                        <input type="text" class="form-control" id="City" formControlName="toAccount" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="Amount" style="width: 250px;padding: 6px;">Amount</label>
+                        <input type="text" class="form-control" id="amount" formControlName="amount"  placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="Remark" style="width: 250px;padding: 6px;">Remark</label>
+                        <input type="text" class="form-control" id="Remark" formControlName="remark"  placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

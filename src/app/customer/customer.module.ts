@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {CustomerRoutingModule} from './customer.router.module'
 import { CustomerComponent } from './customer.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
@@ -21,7 +22,7 @@ import { CustomerHeaderComponent } from './customer-header/customer-header.compo
     CustomerHeaderComponent
   ],
   imports: [
-    CommonModule,CustomerRoutingModule,RouterModule
+    CommonModule,CustomerRoutingModule,RouterModule,FormsModule,ReactiveFormsModule
   ]
 })
 export class CustomerModule { }
