@@ -9,6 +9,7 @@ export class AppService {
 
   private url: string;
   setUserData = new Subject<''>();
+  userName:string=""
 
   constructor(private client: HttpClient) {
   }
@@ -25,6 +26,7 @@ export class AppService {
 
     this.client.post('http://localhost:3000/api/user/login', loginData)
       .subscribe((response) => {
+        this.userName=response["user"]["username"]
         console.log(response);
       });
   }

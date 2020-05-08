@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {LoginComponent} from './login/login.component';
+import { LoginComponent } from './login/login.component';
 import { AlertService, AuthenticationService } from './_services';
+import { AppService } from "./app.service";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import { AlertService, AuthenticationService } from './_services';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'login-app';
-  isLogin:boolean=false;
+  isLogin: boolean = false;
 
   constructor(
     public authenticationService: AuthenticationService,
-    private alertService: AlertService) {}
+    private alertService: AlertService,
+    public appService: AppService) { }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AppService } from "../app.service";
 
 import { AlertService, AuthenticationService } from '../_services';
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) {}
+        private alertService: AlertService,
+        private appService:AppService) {}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit {
                     if(data["user"]["role"]==="Admin"){
                    // this.router.navigate([this.returnUrl,]);
                    this.router.navigate(['/admin']);
+                    
                     }
                     else{
                         this.router.navigate(['/customer',]);

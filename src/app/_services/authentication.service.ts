@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthenticationService {
      isUserLoggedIn:Boolean= false;
+     userName:string=""
     constructor(private http: HttpClient) { }
 
     login(username: string, password: string) {
@@ -13,6 +14,7 @@ export class AuthenticationService {
                 // login successful if there's a jwt token in the response
                 if (user) {
                     console.log("this is user " + user);
+                    this.userName=user["user"]["username"]
                 }
 
                 return user;
