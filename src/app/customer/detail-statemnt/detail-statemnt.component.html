@@ -1,1 +1,52 @@
-<p>detail-statemnt works!</p>
+<div class="text-center">
+    <h6>Get Details Statement</h6>
+</div>
+        <div style="display: flex;">
+                <form [formGroup]="detailSatementForm" (ngSubmit)="onSubmit(detailSatementForm)">
+
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input required id=startDate name="dob" placeholder='YYYY-MM-DD'
+                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                            formControlName="startDate" type="date" class="form-control">
+
+                        <label for="endDate">End Date</label>
+                        <input required id=endDate name="endDate" placeholder='YYYY-MM-DD'
+                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                            formControlName="endDate" endDate= '+d'
+                            autoclose= "true" todayBtn="true" type="date" class="form-control">
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Statement</button>
+                </form>
+    </div>
+
+<div *ngIf="showTable">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Transection No</th>
+                <th scope="col">Transection Date</th>
+                <th scope="col">Transection Type </th>
+                <th scope="col">Cheque Number </th>
+                <th scope="col">Transection Amount </th>
+                <th scope="col">Balance </th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transactions of userTranscationDetails; let i = index">
+                <th scope="row">{{ i+1 }}</th>
+                <td>
+                    {{ transactions.transactionId }}
+                </td>
+                <td>{{ transactions.transactiontime | date }}</td>
+                <td>{{ transactions.transtype }}</td>
+                <td>{{ transactions.chequeNumber  }}</td>
+                <td>{{ transactions.credit | number }}</td>
+                <td>{{ transactions.balance | number }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
