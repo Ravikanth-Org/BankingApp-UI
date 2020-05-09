@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 
 import { AppComponent } from './app.component';
+import { LogoutComponent } from "./logout/logout.component";
 //import { routing } from './app.routing';
 
 import { AlertComponent } from './_directives';
@@ -35,7 +36,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
     // CustomerComponent,
     // AdminComponent,
     // LoginComponent,

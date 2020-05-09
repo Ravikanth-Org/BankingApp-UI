@@ -1,1 +1,41 @@
-<p>update-details works!</p>
+<div role="main">
+
+
+    <div>
+        <div style="height: 64px;">
+
+        </div>
+        <div style="display: flex;">
+            <div class="Hanu">
+                <form [formGroup]="upDateAccountForm" (ngSubmit)="onSubmit(upDateAccountForm)">
+                    <div class="form-group" style="display: flex;">
+                        <label for="name" style="width: 250px;padding: 6px;">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="city" style="width: 250px;padding: 6px;">City</label>
+                        <input type="text" class="form-control" id="City" formControlName="city" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="dob" style="width: 250px;padding: 6px;">Date of Birth</label>
+                        <input type="text" class="form-control" id="dob" formControlName="dob"  placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="phone" style="width: 250px;padding: 6px;">Phone</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone"  placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="pin" style="width: 250px;padding: 6px;">Pin No</label>
+                        <input type="text" class="form-control" id="pin" formControlName="pin" placeholder="">
+                    </div>
+                    <div class="form-group" style="display: flex;">
+                        <label for="address" style="width: 250px;padding: 6px;">Address</label>
+                        <textarea type="text" class="form-control" id="address" formControlName="address"  placeholder=""></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
