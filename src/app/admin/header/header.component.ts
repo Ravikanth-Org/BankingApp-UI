@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   onSearchClick() {
     //  this.router.navigate(['/updateAccount',]);
     // /api/user/:userId
+    this.adminService.whichClick="updateAccount";
     this.appService.getUserDetails(this.searchId,  (res)=> {
      if(res[0]){
       this.adminService.whichClick="updateAccount";

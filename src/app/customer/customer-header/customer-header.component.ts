@@ -23,6 +23,11 @@ export class CustomerHeaderComponent implements OnInit {
 
   onMiniStatementClick() {
     this.customerService.customerWhichClick = "miniStatement"
+    this.customerService.getMiniStatement(881951216, (res)=>{
+if(res){
+  this.customerService.customerWhichClick = "miniStatement";
+}
+    })
   }
 
   onDetailStatementClick() {
