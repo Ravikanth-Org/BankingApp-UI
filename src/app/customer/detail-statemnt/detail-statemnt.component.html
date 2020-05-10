@@ -22,7 +22,10 @@
     </div>
 
 <div *ngIf="showTable">
-    <table class="table table-striped">
+    <button class="btn btn-primary" (click)="exportStatemntToexcel()">
+        Download
+    </button>
+    <table id="detail-table" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>

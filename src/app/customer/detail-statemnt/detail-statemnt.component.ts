@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-detail-statemnt',
@@ -8,15 +9,16 @@ import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms"
 })
 export class DetailStatemntComponent implements OnInit {
   detailSatementForm: FormGroup;
-  showTable=false;
-  userTranscationDetails=[
+  showTable = false;
+  fileName = 'statement.xlsx';
+  userTranscationDetails = [
     {
       transactionId: 2653635,
       transactiontime: new Date(),
       transtype: 'atm',
       credit: 82783,
       balance: 989754,
-      chequeNumber:"2736DFg"
+      chequeNumber: "2736DFg"
     },
     {
       transactionId: 7363736,
@@ -24,7 +26,7 @@ export class DetailStatemntComponent implements OnInit {
       transtype: 'card',
       credit: 5363,
       balance: 149754,
-      chequeNumber:"6256Tty"
+      chequeNumber: "6256Tty"
     },
     {
       transactionId: 4543,
@@ -32,7 +34,7 @@ export class DetailStatemntComponent implements OnInit {
       transtype: 'atm',
       credit: 7265,
       balance: 1469897,
-      chequeNumber:"6256TYu"
+      chequeNumber: "6256TYu"
     },
   ]
 
@@ -48,9 +50,21 @@ export class DetailStatemntComponent implements OnInit {
 
   }
   onSubmit(selectedDates: FormGroup) {
-  this.showTable=true;
+    this.showTable = true;
 
     console.log("on submit click")
+
+  }
+
+  exportStatemntToexcel() {
+
+    let element = document.getElementById('detail-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    XLSX.writeFile(wb, this.fileName);
 
   }
 
