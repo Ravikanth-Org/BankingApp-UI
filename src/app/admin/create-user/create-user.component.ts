@@ -10,7 +10,7 @@ import { AdminService } from '../../_services/admin.service';
 export class CreateUserComponent implements OnInit {
   createUserForm: FormGroup;
   userCreated = 'User Created Successfully!';
-  isUserCreated = false
+  // isUserCreated = false;
 
   constructor(public adminSvc: AdminService, private formBuilder: FormBuilder) { }
 
@@ -38,8 +38,8 @@ export class CreateUserComponent implements OnInit {
         dob: data.value.dob,
         address: data.value.address,
         city: data.value.city,
-        pin: parseInt(data.value.pin),
-        phone: parseInt(data.value.phone)
+        pin: parseInt(data.value.pin, 10),
+        phone: parseInt(data.value.phone, 10)
     }
   };
 
