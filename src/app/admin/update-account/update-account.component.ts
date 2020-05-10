@@ -42,11 +42,11 @@ export class UpdateAccountComponent implements OnInit {
         this.setUserDataToForm(data);
       }
     );
-  //this.recipes = this.recipeService.getRecipes();                                                               
+  //this.recipes = this.recipeService.getRecipes();
   }
 
   onSubmit() {
-   
+
   }
 
  setUserDataToForm(data){

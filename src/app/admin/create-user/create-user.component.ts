@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../../_services/admin.service';
 
 @Component({
   selector: 'app-create-user',
@@ -7,13 +8,52 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  createAccountForm: FormGroup;
-  constructor() { }
+  createUserForm: FormGroup;
+  userCreated = 'User Created Successfully!';
+  isUserCreated = false
+
+  constructor(public adminSvc: AdminService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.createUserForm = this.formBuilder.group({
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      dob: ['', Validators.required],
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      pin: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+  });
+
   }
 
-  onSubmit() {
+  onSubmit(data: FormGroup) {
+    const myuser = {
+    username: data.value.username,
+    password: data.value.password,
+    role: 'Customer',
+    userDetails: {
+        name: data.value.name,
+        dob: data.value.dob,
+        address: data.value.address,
+        city: data.value.city,
+        pin: parseInt(data.value.pin),
+        phone: parseInt(data.value.phone)
+    }
+  };
+
+
+    this.adminSvc.createUser(myuser, (response) => {
+      if ( response && response.createdAt ) {
+        this.adminSvc.isUserCreated = true;
+        // this.adminSvc.whichClick = 'openAccount';
+      }
+      else{
+        this.userCreated = 'Error creating user !!!';
+      }
+      this.createUserForm.reset();
+    });
 
   }
 

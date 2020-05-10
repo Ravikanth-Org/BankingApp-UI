@@ -1,12 +1,13 @@
-<div class="topnav " id="main">
+<nav class="navbar" id="main">
   <!-- <a routerLink="/createUser" routerLinkActive="active">Create Account</a>
   <a routerLink="/openAccount" routerLinkActive="active">Open Account</a> -->
+
   <button type="button" class="btn btn-secondary" (click)="onCreateAccountClick()">Create Account</button>
-  <button type="button" class="btn btn-secondary" (click)="onOpenAccountClick()">Open Account</button>
-  <div class="search-container">
+  <button type="button" class="btn btn-secondary" (click)="onOpenAccountClick()">Update Account</button>
+  <div  class="search-container" >
     <!-- <form [formGroup]="searchForm" (ngSubmit)="onSubmit()"> -->
     <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchId">
     <button type="submit" (click)="onSearchClick()"><i class="fa fa-search"></i></button>
     <!-- </form> -->
   </div>
-</div>
+</nav>

@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, from } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AdminService } from '../../_services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
@@ -25,11 +25,12 @@ export class HeaderComponent implements OnInit {
   }
 
   onCreateAccountClick() {
-    this.adminService.whichClick = "createUser";
+    this.adminService.whichClick = 'createUser';
+    this.adminService.isUserCreated = false;
   }
 
   onOpenAccountClick() {
-    this.adminService.whichClick = "openAccount"
+    this.adminService.whichClick = 'openAccount'
   }
 
   onSearchClick() {

@@ -24,6 +24,7 @@
     "app/app.module.ts",
     "main.ts",
     "polyfills.ts",
-    "../node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxbuttons.ts"
+    "../node_modules/jqwidgets-scripts/jqwidgets-ts/angular_jqxbuttons.ts",
+    "./src/app/_services/admin.service.ts"
 ]
 }

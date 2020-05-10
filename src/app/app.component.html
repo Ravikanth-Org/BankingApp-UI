@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
                 <alert></alert>
-                <div *ngIf="!this.authenticationService.isUserLoggedIn">
-                <app-login></app-login>
+                  <div *ngIf="!this.authenticationService.isUserLoggedIn">
+                  <app-login></app-login>
                 </div>
                 <div *ngIf="this.authenticationService.isUserLoggedIn">
-                 <router-outlet></router-outlet>
-                 <app-logout></app-logout>
+                  <router-outlet></router-outlet>
+                  <!-- <app-logout></app-logout> -->
                 </div>
             </div>
         </div>
