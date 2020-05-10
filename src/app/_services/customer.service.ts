@@ -7,7 +7,9 @@ import {Subject} from 'rxjs'
 })
 export class CustomerService {
   setMiniStatementData = new Subject<any>();
+  setUserDetails = new Subject<any>();
   customerWhichClick:string="personalDetails";
+  
 
   constructor(private client:HttpClient) { 
 
@@ -20,6 +22,18 @@ public getMiniStatement(accountid,callBackFunction){
     console.log(response);
     this.setMiniStatementData.next(response);
     callBackFunction(response);
+  });
+}
+
+///api/user/:name
+public getUserDetails(username,callBackFunction){
+  this.client.get(`http://localhost:3000/api/users/${username}`)
+  .subscribe((response) => {
+    let data = response[0]["userDetails"];
+    data["userid"] = response[0]["userid"]
+    console.log(data);
+    this.setUserDetails.next(data);
+    callBackFunction(data);
   });
 }
 
