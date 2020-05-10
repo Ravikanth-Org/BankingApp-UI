@@ -1,52 +1,68 @@
 <div role="main">
+  <div *ngIf="this.adminSvc.isAccountCreated">
+    <span>{{accountCreated}}</span>
+  </div>
 
-
-    <div>
-        <div style="height: 64px;">
-
-        </div>
-        <div style="display: flex;">
+  <div *ngIf="!this.adminSvc.isAccountCreated">
+    <div style="display: flex;">
             <div class="Hanu">
-                <form  [formGroup]="openAccountForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Account Type</label>
-                        <select class="form-control">
+                <form  [formGroup]="createAccountForm" (ngSubmit)="onSubmit(createAccountForm)">
+
+                  <div class="form-group" style="display: flex;">
+                        <label for="acctType" >Account Type</label>
+                        <select class="form-control" formControlName="type" id="acctType">
                             <option>Savings</option>
+                            <option>Current</option>
                         </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Joint Account</label>
-                        <select class="form-control">
-                            <option>Default select</option>
+                        <label for="jointAcct">Joint Account</label>
+                        <input type="checkbox" class="form-control" formControlName="joint" id="jointAcct">
+                    </div>
+
+                    <div class="form-group" style="display: flex;">
+                        <label for="primaryOwner">Primary Owner</label>
+                        <select class="form-control" formControlName="primaryOwner" id="primaryOwner">
+                          <option *ngFor="let user of users" [value]="user.userid">{{user.userDetails.name}}</option>
                         </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Primary Owner</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                      <label for="secondowner" >Secondary Owner</label>
+                      <select class="form-control" formControlName="secondaryOwner" id="secondowner">
+                        <option *ngFor="let user of users" [value]="user.userid">{{user.userDetails.name}}</option>
+                      </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Secondary Owner</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                    </div>
-                    <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Branch</label>
-                        <select class="form-control">
-                            <option>Chennai</option>
+                        <label for="branch">Branch</label>
+                        <select class="form-control" formControlName="branch">
+                          <option *ngFor="let branch of branches" [value]="branch.branchname">{{branch.branchname}}</option>
                         </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Currency</label>
-                        <select class="form-control">
-                            <option>Rupees</option>
+                      <label for="initBalance" >Initial Balance</label>
+                      <input type="text" class="form-control" formControlName="initBalance" id="initBalance">
+                    </div>
+
+                    <div class="form-group" style="display: flex;">
+                        <label for="currecy" >Currency</label>
+                        <select class="form-control" formControlName="currency">
+                            <option>RUPEES</option>
                         </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="exampleInputEmail1" style="width: 250px;padding: 6px;">Initial Balance</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                        <label for="cheques" >Cheques</label>
+                        <textarea formControlName="cheques" class="form-control" id="cheques" placeholder=""></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <button type="submit" class="btn btn-primary">Create Account</button>
                 </form>
             </div>
+          </div>
         </div>
-    </div>
+
 </div>

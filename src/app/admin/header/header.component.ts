@@ -30,18 +30,17 @@ export class HeaderComponent implements OnInit {
   }
 
   onOpenAccountClick() {
-    this.adminService.whichClick = 'openAccount'
+    this.adminService.whichClick = 'createAccount';
+    this.adminService.isAccountCreated = false;
   }
 
   onSearchClick() {
-    //  this.router.navigate(['/updateAccount',]);
-    // /api/user/:userId
-    this.adminService.whichClick="updateAccount";
-    this.appService.getUserDetails(this.searchId,  (res)=> {
-     if(res[0]){
-      this.adminService.whichClick="updateAccount";
-     }
+    this.adminService.whichClick = 'updateAccount';
+    this.appService.getUserDetails( this.searchId, (res) => {
+      if (res[0]){
+        this.adminService.whichClick = 'updateAccount';
+      }
       console.log(res);
-    })
+    });
   }
 }

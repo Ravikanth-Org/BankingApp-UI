@@ -6,7 +6,7 @@
     <div *ngIf="!this.adminSvc.isUserCreated">
 
       <div style="display: flex;">
-        <div class="Hanu" tabindex="0">
+        <div class="Hanu">
           <form [formGroup]="createUserForm" (ngSubmit)="onSubmit(createUserForm)">
             <div class="form-group" style="display: flex;">
               <label for="name" style="width: 250px;padding: 6px;">Customer Name</label>
