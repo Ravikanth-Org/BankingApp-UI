@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from "../../_services/customer.service";
+import { CustomerService } from '../../_services/customer.service';
 import { User } from '../../_models';
-import {AuthenticationService} from "../../_services/authentication.service";
+import {AuthenticationService} from '../../_services/authentication.service';
 import { from } from 'rxjs';
 
 @Component({
@@ -11,36 +11,35 @@ import { from } from 'rxjs';
 })
 export class CustomerHeaderComponent implements OnInit {
 
-  constructor(public customerService: CustomerService, private authService:AuthenticationService) { }
+  constructor(public customerService: CustomerService, private authService: AuthenticationService ) { }
 
   ngOnInit(): void {
   }
 
   onHomeClick() {
-    this.customerService.customerWhichClick = "home";
-      this.customerService.getUserDetails(this.customerService.accountId, (res)=>{
-        if(res){
-          this.customerService.customerWhichClick = "home";
+    this.customerService.customerWhichClick = 'home';
+    this.customerService.getUserDetails(this.customerService.accountId, (res) => {
+      if (res){
+          this.customerService.customerWhichClick = 'home';
         }
-            })
-      
+    });
     }
 
   onFundTransferClick() {
-    this.customerService.customerWhichClick = "fundTransfer"
+    this.customerService.customerWhichClick = 'fundTransfer';
   }
 
   onMiniStatementClick() {
-    this.customerService.customerWhichClick = "miniStatement"
-    this.customerService.getMiniStatement((res)=>{
-if(res){
-  this.customerService.customerWhichClick = "miniStatement";
-}
-    })
+    this.customerService.customerWhichClick = 'miniStatement';
+    this.customerService.getMiniStatement((res) => {
+    if (res){
+      this.customerService.customerWhichClick = 'miniStatement';
+    }
+    });
   }
 
   onDetailStatementClick() {
-    this.customerService.customerWhichClick = "detailStatment"
+    this.customerService.customerWhichClick = 'detailStatment';
   }
 
   onUpdateDetailsClick(){

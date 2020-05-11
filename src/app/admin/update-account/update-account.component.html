@@ -2,39 +2,51 @@
 
 
     <div>
-        <div style="height: 64px;">
-
+        <div *ngIf="this.adminService.isAccountUpdated">
+          <span>{{this.accountUpdated}}</span>
         </div>
-        <div style="display: flex;">
+        <div style="display: flex;" *ngIf="!this.adminService.isAccountUpdated">
             <div class="Hanu">
-                <form [formGroup]="upDateAccountForm" (ngSubmit)="onSubmit()">
+              <div  class="search-container">
+                <label for="search" style="width: 250px;padding: 6px;">User ID:</label>
+                <input type="text" placeholder="Search.." name="search" [(ngModel)]="searchId" id="search">
+                <button type="submit" (click)="onSearchClick()"><i class="fa fa-search"></i></button>
+              </div>
+
+              <!-- <div *ngIf="this.displayForm"> -->
+                  <form  [formGroup]="updateAccountForm" (ngSubmit)="onSubmit(updateAccountForm)">
+
                     <div class="form-group" style="display: flex;">
-                        <label for="name" style="width: 250px;padding: 6px;">Name</label>
-                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="">
+                        <label for="accountId" style="width: 250px;padding: 6px;">Account ID</label>
+                        <input type="text" class="form-control" id="name" formControlName="accountId">
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="city" style="width: 250px;padding: 6px;">City</label>
-                        <input type="text" class="form-control" id="City" formControlName="city" placeholder="">
+                        <label for="city" style="width: 250px;padding: 6px;">Amount</label>
+                        <input type="number" class="form-control" id="City" formControlName="transAmt" placeholder="">
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="dob" style="width: 250px;padding: 6px;">Date of Birth</label>
-                        <input type="text" class="form-control" id="dob" formControlName="dob"  placeholder="">
+                      <label for="transtype">Transaction Type</label>
+                      <select class="form-control" formControlName="transtype" id="transtype">
+                        <option value="WITHDRAWAL">WITHDRAWAL</option>
+                        <option selected value="DEPOSIT">DEPOSIT</option>
+                      </select>
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="phone" style="width: 250px;padding: 6px;">Phone</label>
-                        <input type="text" class="form-control" id="phone" formControlName="phone"  placeholder="">
+                        <label for="remarks" style="width: 250px;padding: 6px;">Remarks</label>
+                        <input type="text" class="form-control" id="remarks" formControlName="remarks" placeholder="">
                     </div>
+
                     <div class="form-group" style="display: flex;">
-                        <label for="pin" style="width: 250px;padding: 6px;">Pin No</label>
-                        <input type="text" class="form-control" id="pin" formControlName="pin" placeholder="">
-                    </div>
-                    <div class="form-group" style="display: flex;">
-                        <label for="address" style="width: 250px;padding: 6px;">Address</label>
-                        <textarea type="text" class="form-control" id="address" formControlName="address"  placeholder=""></textarea>
+                        <label for="chequeNumber" style="width: 250px;padding: 6px;">chequeNumber</label>
+                        <input type="number" class="form-control" id="chequeNumber" formControlName="chequeNumber"  placeholder="">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update Account</button>
-                </form>
+                  </form>
+                <!-- </div> -->
             </div>
         </div>
     </div>
