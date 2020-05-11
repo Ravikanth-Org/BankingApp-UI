@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../../_services/customer.service";
+import { User } from '../../_models';
+import {AuthenticationService} from "../../_services/authentication.service";
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-customer-header',
@@ -8,14 +11,20 @@ import { CustomerService } from "../../_services/customer.service";
 })
 export class CustomerHeaderComponent implements OnInit {
 
-  constructor(public customerService: CustomerService) { }
+  constructor(public customerService: CustomerService, private authService:AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
-  onPersonalDetailsClick() {
-    this.customerService.customerWhichClick = "personalDetails"
-  }
+  onHomeClick() {
+    this.customerService.customerWhichClick = "home";
+      this.customerService.getUserDetails(this.customerService.accountId, (res)=>{
+        if(res){
+          this.customerService.customerWhichClick = "home";
+        }
+            })
+      
+    }
 
   onFundTransferClick() {
     this.customerService.customerWhichClick = "fundTransfer"
@@ -23,7 +32,7 @@ export class CustomerHeaderComponent implements OnInit {
 
   onMiniStatementClick() {
     this.customerService.customerWhichClick = "miniStatement"
-    this.customerService.getMiniStatement(881951216, (res)=>{
+    this.customerService.getMiniStatement((res)=>{
 if(res){
   this.customerService.customerWhichClick = "miniStatement";
 }
