@@ -16,13 +16,14 @@ export class CustomerHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPersonalDetailsClick() {
-    this.customerService.customerWhichClick = "personalDetails";
-      this.customerService.getUserDetails(this.authService.userName, (res)=>{
+  onHomeClick() {
+    this.customerService.customerWhichClick = "home";
+      this.customerService.getUserDetails(this.customerService.accountId, (res)=>{
         if(res){
-          this.customerService.customerWhichClick = "personalDetails";
+          this.customerService.customerWhichClick = "home";
         }
             })
+      
     }
 
   onFundTransferClick() {
@@ -31,7 +32,7 @@ export class CustomerHeaderComponent implements OnInit {
 
   onMiniStatementClick() {
     this.customerService.customerWhichClick = "miniStatement"
-    this.customerService.getMiniStatement(881951216, (res)=>{
+    this.customerService.getMiniStatement((res)=>{
 if(res){
   this.customerService.customerWhichClick = "miniStatement";
 }

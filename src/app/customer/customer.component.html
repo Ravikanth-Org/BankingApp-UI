@@ -2,7 +2,7 @@
 <!-- <router-outlet></router-outlet> -->
 
 <app-customer-header></app-customer-header>
-<div *ngIf='this.customerService.customerWhichClick==="personalDetails"'>
+<div *ngIf='this.customerService.customerWhichClick==="home"'>
 <app-customer-home></app-customer-home>
 </div>
 <div *ngIf='this.customerService.customerWhichClick==="detailStatment"'>
@@ -16,7 +16,4 @@
 </div>
 <div *ngIf='this.customerService.customerWhichClick==="UpdateDetail"'>
     <app-update-details></app-update-details>
-</div>
-<div>
-    <p><a class="btn btn-primary pull-right" [routerLink]="['/login']">Logout</a></p>
 </div>

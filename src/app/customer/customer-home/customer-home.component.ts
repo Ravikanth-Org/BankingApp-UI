@@ -19,19 +19,20 @@ export class CustomerHomeComponent implements OnInit {
 constructor(private customerService:CustomerService, private authService:AuthenticationService) { }
 
   ngOnInit(): void {
-    if(this.customerService.customerWhichClick==="personalDetails"){
+    
       this.customerService.getUserDetails(this.authService.userName, (res)=>{
         if(res){
-          this.customerService.customerWhichClick = "personalDetails";
+          this.userDetails=res;
+       this.customerService.customerWhichClick = "home";
         }
             })
-    }
-    this.subscription = this.customerService.setUserDetails
-    .subscribe(
-      (data) => {
-         this.userDetails = data;
-      }
-    );
+    // this.subscription = this.customerService.setUserDetails
+    // .subscribe(
+    //   (data) => {
+    //     this.userDetails = data;
+       
+    //   }
+    // );
 
   }
 

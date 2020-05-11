@@ -1,6 +1,6 @@
-
+<!-- 
 <div class="text-center">
-    <h6>User Account Details</h6>
+    <h6>Account Summary</h6>
 </div>
 <table  class="table table-striped" >
     <tbody>
@@ -35,4 +35,33 @@
       <td>{{userDetails.email}}</td>
     </tr>
     </tbody>
-  </table>
+  </table> -->
+
+  
+<div class="text-center">
+  <h6>Account Summary</h6>
+</div>
+<table  class="table table-striped" >
+  <tbody>
+  <tr>
+    <td style="font-weight:bold">Account Id</td>
+    <td>{{userDetails.accountid}}</td>
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Account Type</td>
+    <td>{{userDetails.type}}</td>
+  </tr>
+  <tr>
+      <td style="font-weight:bold">Branch Name</td>
+      <td>{{userDetails.branch}}</td>
+    </tr>
+  <tr>
+    <td style="font-weight:bold">Account Balance</td>
+    <td>{{userDetails.balance}}</td>
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Last Transaction Date</td>
+    <td>{{userDetails.lastTransDate}}</td>
+  </tr>
+  </tbody>
+</table>

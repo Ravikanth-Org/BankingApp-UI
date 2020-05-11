@@ -8,16 +8,18 @@ import {Subject} from 'rxjs'
 export class CustomerService {
   setMiniStatementData = new Subject<any>();
   setUserDetails = new Subject<any>();
-  customerWhichClick:string="personalDetails";
+  setAccountDetails = new Subject<any>();
+  customerWhichClick:string="home";
   
+  accountId:number;
 
   constructor(private client:HttpClient) { 
 
   }
 
 ///api/user/:userId
-public getMiniStatement(accountid,callBackFunction){
-  this.client.get(`http://localhost:3000/api/transaction/ministatement/${accountid}`)
+public getMiniStatement(callBackFunction){
+  this.client.get(`http://localhost:3000/api/transaction/ministatement/${this.accountId}`)
   .subscribe((response) => {
     console.log(response);
     this.setMiniStatementData.next(response);
@@ -33,8 +35,21 @@ public getUserDetails(username,callBackFunction){
     data["userid"] = response[0]["userid"]
     console.log(data);
     this.setUserDetails.next(data);
-    callBackFunction(data);
+    callBackFunction(data, callBackFunction);
+    this.getAccountDetails(data["userid"], callBackFunction)
   });
 }
+
+///api/account/:userid
+public getAccountDetails(userid, callBackFunction){
+  this.client.get(`http://localhost:3000/api/account/${userid}`)
+  .subscribe((response) => {
+    console.log(response);
+    this.setAccountDetails.next(response);
+    this.accountId = response["accountid"];
+    callBackFunction(response);
+  });
+}
+
 
 }
