@@ -27,6 +27,7 @@ public getMiniStatement(callBackFunction){
   });
 }
 
+
 ///api/user/:name
 public getUserDetails(username,callBackFunction){
   this.client.get(`http://localhost:3000/api/users/${username}`)
@@ -35,8 +36,9 @@ public getUserDetails(username,callBackFunction){
     data["userid"] = response[0]["userid"]
     console.log(data);
     this.setUserDetails.next(data);
-    callBackFunction(data, callBackFunction);
-    this.getAccountDetails(data["userid"], callBackFunction)
+    this.accountId=data["userid"];
+    callBackFunction(data);
+  //  this.getAccountDetails(data["userid"], callBackFunction)
   });
 }
 
