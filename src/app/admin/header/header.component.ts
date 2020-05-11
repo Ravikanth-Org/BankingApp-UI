@@ -12,8 +12,6 @@ import { AppService } from '../../app.service';
 export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   private userSub: Subscription;
-  searchId: string;
-
   constructor(
     public adminService: AdminService,
     private appService: AppService
@@ -24,23 +22,31 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  onCreateAccountClick() {
+  onCreateUserClick() {
     this.adminService.whichClick = 'createUser';
     this.adminService.isUserCreated = false;
+
+    this.adminService.displaySearch = false;
+    this.adminService.displayUser = true;
+    this.adminService.displayAccount = false;
   }
 
-  onOpenAccountClick() {
+  onCreateAccountClick() {
     this.adminService.whichClick = 'createAccount';
     this.adminService.isAccountCreated = false;
+
+    this.adminService.displaySearch = false;
+    this.adminService.displayUser = false;
+    this.adminService.displayAccount = true;
   }
 
-  onSearchClick() {
+  onUpdateAccountClick() {
     this.adminService.whichClick = 'updateAccount';
-    this.appService.getUserDetails( this.searchId, (res) => {
-      if (res[0]){
-        this.adminService.whichClick = 'updateAccount';
-      }
-      console.log(res);
-    });
+    this.adminService.isAccountUpdated = false;
+
+    this.adminService.displaySearch = true;
+    this.adminService.displayUser = false;
+    this.adminService.displayAccount = false;
   }
+
 }
