@@ -39,7 +39,7 @@ export class AdminService {
   }
 
   public getBranches(callback) {
-    this.client.get('http://localhost:3000/api/branches')
+    this.client.get('http://localhost:3000/api/branchnames')
       .subscribe((response) => {
         console.log(response);
         callback(response);
