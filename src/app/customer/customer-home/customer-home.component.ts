@@ -22,6 +22,9 @@ constructor(private customerService:CustomerService, private authService:Authent
     
       this.customerService.getUserDetails(this.authService.userName, (res)=>{
         if(res){
+          this.customerService.getAccountDetails(res["userid"], (response)=> {
+            this.userDetails=response;
+          })
           this.userDetails=res;
        this.customerService.customerWhichClick = "home";
         }
