@@ -15,7 +15,8 @@ export class LogoutComponent implements OnInit {
 
   onLogOutClick() {
     this.authService.isUserLoggedIn = false;
-    this.authService.userName="";
+    this.authService.userName = '';
+    this.authService.name = '';
   }
 
 }

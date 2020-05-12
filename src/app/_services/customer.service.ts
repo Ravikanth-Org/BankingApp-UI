@@ -27,6 +27,15 @@ public getMiniStatement(callBackFunction){
   });
 }
 
+public getDetailedStatement(searchQry, callBackFunction){
+  this.client.post(`http://localhost:3000/api/transaction/detailedstatement`, searchQry)
+  .subscribe((response) => {
+    console.log(response);
+    callBackFunction(response);
+  });
+}
+
+
 
 // api/user/:name
 public getUserDetails(username, callBackFunction){

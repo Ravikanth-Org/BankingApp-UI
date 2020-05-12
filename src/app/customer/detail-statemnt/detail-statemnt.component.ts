@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerService } from '../../_services/customer.service';
+
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -11,54 +13,59 @@ export class DetailStatemntComponent implements OnInit {
   detailSatementForm: FormGroup;
   showTable = false;
   fileName = 'statement.xlsx';
-  userTranscationDetails = [
-    {
-      transactionId: 2653635,
-      transactiontime: new Date(),
-      transtype: 'atm',
-      credit: 82783,
-      balance: 989754,
-      chequeNumber: "2736DFg"
-    },
-    {
-      transactionId: 7363736,
-      transactiontime: new Date(),
-      transtype: 'card',
-      credit: 5363,
-      balance: 149754,
-      chequeNumber: "6256Tty"
-    },
-    {
-      transactionId: 4543,
-      transactiontime: new Date(),
-      transtype: 'atm',
-      credit: 7265,
-      balance: 1469897,
-      chequeNumber: "6256TYu"
-    },
-  ]
+  userTransaction = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, public customerSvc: CustomerService) { }
 
   ngOnInit(): void {
     this.detailSatementForm = this.formBuilder.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-
-
-    })
+      criteria: ['', Validators.required],
+      startDate: [],
+      endDate: [],
+      amount: [],
+      lessthan: [],
+      cheque: []
+    });
 
   }
-  onSubmit(selectedDates: FormGroup) {
-    this.showTable = true;
+  onSubmit(data: FormGroup) {
+      let searchQry = {};
+      switch (data.value.criteria)
+      {
+        case 'DATE-RANGE':  searchQry = {
+                                          accountId: this.customerSvc.accountId,
+                                          criteria: 'DATE-RANGE',
+                                          fromDate: data.value.startDate,
+                                          toDate: data.value.endDate
+                                        };
+                            break;
+        case 'MONTHLY':   searchQry = {accountId: this.customerSvc.accountId, criteria: 'MONTHLY'};
+                          break;
+        case 'ANNUALLY':  searchQry = {accountId: this.customerSvc.accountId, criteria: 'ANNUALLY'};
+                          break;
+        case 'AMOUNT':  searchQry = {
+                                      accountId: this.customerSvc.accountId,
+                                      criteria: 'AMOUNT',
+                                      lessThan: (data.value.lessthan === 'LESSTHAN'),
+                                      amount: data.value.amount
+                                    };
+                        break;
+        case 'CHEQUE':  searchQry = {accountId: this.customerSvc.accountId, criteria: 'CHEQUE', chequeNumber: Number(data.value.cheque)};
+                        break;
+      }
 
-    console.log("on submit click")
-
+      this.customerSvc.getDetailedStatement(searchQry, (response) => {
+        if ( response && response.length !== 0 ) {
+          this.userTransaction = response;
+        }
+        this.detailSatementForm.reset();
+      });
+      this.showTable = true;
   }
 
   exportStatemntToexcel() {
 
-    let element = document.getElementById('detail-table');
+    const element = document.getElementById('detail-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
