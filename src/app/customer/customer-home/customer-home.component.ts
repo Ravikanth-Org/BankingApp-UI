@@ -14,7 +14,7 @@ export class CustomerHomeComponent implements OnInit {
 
  // userData = [];
 
-  userDetails: any;
+  userDetails:any;
 
   constructor(public customerService: CustomerService, private authService: AuthenticationService) { }
 
@@ -26,16 +26,9 @@ export class CustomerHomeComponent implements OnInit {
             this.userDetails = response;
           });
           this.userDetails = res;
-          this.customerService.customerWhichClick = "home";
+          this.customerService.customerWhichClick = 'home';
         }
       });
-    // this.subscription = this.customerService.setUserDetails
-    // .subscribe(
-    //   (data) => {
-    //     this.userDetails = data;
-
-    //   }
-    // );
 
   }
 

@@ -1,17 +1,17 @@
 <div role="main">
-
-
-    <div>
-        `<div style="display: flex;">
-            <div class="Hanu">
-                <form [formGroup]="upDateAccountForm" (ngSubmit)="onSubmit(upDateAccountForm)">
+    <div *ngIf="this.custSvc.isPersonalUpdated">
+      <span>{{this.updateMsg}}</span>
+    </div>
+    <div *ngIf="!this.custSvc.isPersonalUpdated">
+        `<div class="Hanu">
+                <form [formGroup]="updatePersonalForm" (ngSubmit)="onSubmit(updatePersonalForm)">
                     <div class="form-group" style="display: flex;">
                         <label for="name" style="width: 250px;padding: 6px;">Name</label>
                         <input type="text" class="form-control" id="name" formControlName="name" placeholder="">
                     </div>
                     <div class="form-group" style="display: flex;">
                         <label for="city" style="width: 250px;padding: 6px;">City</label>
-                        <input type="text" class="form-control" id="City" formControlName="city" placeholder="">
+                        <input type="text" class="form-control" id="city" formControlName="city" placeholder="">
                     </div>
                     <div class="form-group" style="display: flex;">
                         <label for="dob" style="width: 250px;padding: 6px;">Date of Birth</label>
@@ -32,7 +32,7 @@
 
                     <button type="submit" class="btn btn-primary">Update Account</button>
                 </form>
-            </div>
-        </div>
+         </div>
+
     </div>
 </div>

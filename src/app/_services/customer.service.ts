@@ -11,7 +11,9 @@ export class CustomerService {
   setAccountDetails = new Subject<any>();
   customerWhichClick = 'home';
   isTransferred = false;
+  isPersonalUpdated = false;
   accountId: number;
+  userid = '';
 
   constructor(private client: HttpClient) {
 
@@ -41,23 +43,21 @@ public getDetailedStatement(searchQry, callBackFunction){
 public getUserDetails(username, callBackFunction){
   this.client.get(`http://localhost:3000/api/users/${username}`)
   .subscribe((response) => {
-    let data = response[0]["userDetails"];
-    data["userid"] = response[0]["userid"]
-    console.log(data);
-    this.setUserDetails.next(data);
-    this.accountId=data["userid"];
-    callBackFunction(data);
-  //  this.getAccountDetails(data["userid"], callBackFunction)
+    const user = response[0];
+    this.userid = user.userid;
+    this.setUserDetails.next(user);
+    callBackFunction(user);
   });
 }
 
-///api/account/:userid
+
   public getAccountDetails(userid, callBackFunction){
     this.client.get(`http://localhost:3000/api/account/${userid}`)
     .subscribe((response) => {
+      const account = response;
       console.log(response);
       this.setAccountDetails.next(response);
-      this.accountId = response["accountid"];
+      this.accountId = account["accountid"];
       callBackFunction(response);
     });
   }
@@ -76,6 +76,14 @@ public getUserDetails(username, callBackFunction){
         console.log(response);
         callback(response);
       });
+  }
+
+  public updatePersonalDetails(userObj, userid, callBackFunction){
+    this.client.put( `http://localhost:3000/api/user/${userid}`, userObj)
+    .subscribe((response) => {
+      console.log(response);
+      callBackFunction(response);
+    });
   }
 
 
