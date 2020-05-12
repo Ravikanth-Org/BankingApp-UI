@@ -7,6 +7,7 @@ export class AuthenticationService {
   isUserLoggedIn = false;
   userName = '';
   userId = '';
+  name = '';
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
@@ -16,6 +17,7 @@ export class AuthenticationService {
                 if (res) {
                     this.userName = res.user.username;
                     this.userId = res.user.userid;
+                    this.name = res.user.name;
                 }
                 return res;
     }));
