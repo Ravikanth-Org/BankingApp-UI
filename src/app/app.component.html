@@ -3,14 +3,12 @@
     <h3 class="text-center">Welcome {{this.authenticationService.userName}} to ABC Online Banking</h3>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
-                <alert></alert>
-                  <div *ngIf="!this.authenticationService.isUserLoggedIn">
+            <div>
+                <div class="jumbotron" *ngIf="!this.authenticationService.isUserLoggedIn">
                   <app-login></app-login>
                 </div>
-                <div *ngIf="this.authenticationService.isUserLoggedIn">
+                <div class="col-lg-12" *ngIf="this.authenticationService.isUserLoggedIn">
                   <router-outlet></router-outlet>
-                  <!-- <app-logout></app-logout> -->
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { AdminService } from '../../_services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
-
+import {  AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
   private userSub: Subscription;
   constructor(
     public adminService: AdminService,
-    private appService: AppService
+    private appService: AppService,
+    private authService: AuthenticationService,
 
   ) { }
 
@@ -48,5 +49,15 @@ export class HeaderComponent implements OnInit {
     this.adminService.displayUser = false;
     this.adminService.displayAccount = false;
   }
+
+  onLogoutClick() {
+    this.adminService.whichClick = 'logout';
+    this.authService.isUserLoggedIn = false;
+
+    this.adminService.displaySearch = false;
+    this.adminService.displayUser = false;
+    this.adminService.displayAccount = false;
+  }
+
 
 }

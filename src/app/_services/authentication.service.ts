@@ -4,26 +4,27 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
-     isUserLoggedIn:Boolean= false;
-     userName:string=""
-    constructor(private http: HttpClient) { }
+  isUserLoggedIn = false;
+  userName = '';
+  userId = '';
+  constructor(private http: HttpClient) { }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`http://localhost:3000/api/user/login`, { username: username, password: password })
-            .pipe(map(user => {
+  login(username: string, password: string) {
+    return this.http.post<any>(`http://localhost:3000/api/user/login`, { username: username, password: password })
+    .pipe(map( res => {
                 // login successful if there's a jwt token in the response
-                if (user) {
-                    console.log("this is user " + user);
-                    this.userName=user["user"]["username"]
+                if (res) {
+                    this.userName = res.user.username;
+                    this.userId = res.user.userid;
                 }
+                return res;
+    }));
+  }
 
-                return user;
-            }));
-    }
 
-
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-    }
+  logout() {
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.isUserLoggedIn = false;
+  }
 }

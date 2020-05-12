@@ -10,7 +10,7 @@ export class CustomerService {
   setUserDetails = new Subject<any>();
   setAccountDetails = new Subject<any>();
   customerWhichClick = 'home';
-
+  isTransferred = false;
   accountId: number;
 
   constructor(private client: HttpClient) {
@@ -43,15 +43,31 @@ public getUserDetails(username, callBackFunction){
 }
 
 ///api/account/:userid
-public getAccountDetails(userid, callBackFunction){
-  this.client.get(`http://localhost:3000/api/account/${userid}`)
-  .subscribe((response) => {
-    console.log(response);
-    this.setAccountDetails.next(response);
-    this.accountId = response["accountid"];
-    callBackFunction(response);
-  });
-}
+  public getAccountDetails(userid, callBackFunction){
+    this.client.get(`http://localhost:3000/api/account/${userid}`)
+    .subscribe((response) => {
+      console.log(response);
+      this.setAccountDetails.next(response);
+      this.accountId = response["accountid"];
+      callBackFunction(response);
+    });
+  }
+
+  public getAccounts(callback) {
+    this.client.get('http://localhost:3000/api/accounts')
+      .subscribe((response) => {
+        console.log(response);
+        callback(response);
+      });
+  }
+
+  public fundTransfer(transfer, callback) {
+    this.client.post('http://localhost:3000/api/account/fundtransfer', transfer)
+      .subscribe((response) => {
+        console.log(response);
+        callback(response);
+      });
+  }
 
 
 }

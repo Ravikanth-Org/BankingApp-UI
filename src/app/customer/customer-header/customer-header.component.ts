@@ -3,6 +3,7 @@ import { CustomerService } from '../../_services/customer.service';
 import { User } from '../../_models';
 import {AuthenticationService} from '../../_services/authentication.service';
 import { from } from 'rxjs';
+import { FundTransferComponent } from '../fund-transfer/fund-transfer.component';
 
 @Component({
   selector: 'app-customer-header',
@@ -27,6 +28,7 @@ export class CustomerHeaderComponent implements OnInit {
 
   onFundTransferClick() {
     this.customerService.customerWhichClick = 'fundTransfer';
+    this.customerService.isTransferred = false;
   }
 
   onMiniStatementClick() {
@@ -43,12 +45,17 @@ export class CustomerHeaderComponent implements OnInit {
   }
 
   onUpdateDetailsClick(){
-    this.customerService.customerWhichClick = "UpdateDetail";
-    this.customerService.getUserDetails(this.authService.userName, (res)=>{
-      if(res){
-        this.customerService.customerWhichClick = "UpdateDetail";
+    this.customerService.customerWhichClick = 'UpdateDetail';
+    this.customerService.getUserDetails(this.authService.userName, (res) => {
+      if (res){
+        this.customerService.customerWhichClick = 'UpdateDetail';
       }
-          })
+          });
+  }
+
+  onLogoutClick() {
+    this.customerService.customerWhichClick = 'logout';
+    this.authService.isUserLoggedIn = false;
   }
 
 }
