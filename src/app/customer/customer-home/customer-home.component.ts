@@ -14,26 +14,26 @@ export class CustomerHomeComponent implements OnInit {
 
  // userData = [];
 
- userDetails:any
+  userDetails: any;
 
-constructor(private customerService:CustomerService, private authService:AuthenticationService) { }
+  constructor(public customerService: CustomerService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    
-      this.customerService.getUserDetails(this.authService.userName, (res)=>{
-        if(res){
-          this.customerService.getAccountDetails(res["userid"], (response)=> {
-            this.userDetails=response;
-          })
-          this.userDetails=res;
-       this.customerService.customerWhichClick = "home";
+
+    this.customerService.getUserDetails(this.authService.userName, (res) => {
+      if (res){
+          this.customerService.getAccountDetails(res["userid"], (response) => {
+            this.userDetails = response;
+          });
+          this.userDetails = res;
+          this.customerService.customerWhichClick = "home";
         }
-            })
+      });
     // this.subscription = this.customerService.setUserDetails
     // .subscribe(
     //   (data) => {
     //     this.userDetails = data;
-       
+
     //   }
     // );
 
