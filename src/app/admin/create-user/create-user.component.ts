@@ -9,7 +9,7 @@ import { AdminService } from '../../_services/admin.service';
 })
 export class CreateUserComponent implements OnInit {
   createUserForm: FormGroup;
-  userCreated = 'User Created Successfully!';
+  userCreated = 'Customer Created Successfully!';
   // isUserCreated = false;
 
   constructor(public adminSvc: AdminService, private formBuilder: FormBuilder) { }
