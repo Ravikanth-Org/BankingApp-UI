@@ -46,6 +46,7 @@ export class CustomerHeaderComponent implements OnInit {
 
   onUpdateDetailsClick(){
     this.customerService.customerWhichClick = 'UpdateDetail';
+    this.customerService.isPersonalUpdated = false;
     this.customerService.getUserDetails(this.authService.userName, (res) => {
       if (res){
         this.customerService.customerWhichClick = 'UpdateDetail';
